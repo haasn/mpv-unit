@@ -138,13 +138,14 @@ cmd set dither ordered
 cmd set dither-depth 2
 save dither
 cmd set dither no
-cmd set opengl-shaders src/gray.glsl
+
 cmd set linear-scaling yes
-save gray
-cmd set linear-scaling no
-cmd set opengl-shaders src/tex.glsl
-save usertex
+for shader in gray tex offset; do
+    cmd set opengl-shaders src/$shader.glsl
+    save glsl_$shader
+done
 cmd set opengl-shaders '""'
+cmd set linear-scaling no
 cmd print-text '${vo-passes}' # shouldn't crash
 
 ## Cleanup
