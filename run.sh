@@ -42,7 +42,7 @@ cmd print-text '${vo-passes}' # shouldn't crash
 
 ## Test upscaling
 
-SCALERS="bilinear bicubic oversample ewa_lanczos spline36"
+SCALERS="bilinear bicubic_fast oversample ewa_lanczos spline36"
 
 load src/dot.ppm
 cmd set video-unscaled no
@@ -100,8 +100,12 @@ done
 
 cmd set scale bilinear
 cmd set cscale bilinear
-cmd set video-zoom 0
 cmd set video-rotate 0
+
+cmd set opengl-dumb-mode yes
+save chroma-dumb
+cmd set opengl-dumb-mode no
+cmd set video-zoom 0
 
 ## Test color management
 
@@ -137,8 +141,10 @@ cmd set dither no
 cmd set opengl-shaders src/gray.glsl
 cmd set linear-scaling yes
 save gray
-cmd set opengl-shaders '""'
 cmd set linear-scaling no
+cmd set opengl-shaders src/tex.glsl
+save usertex
+cmd set opengl-shaders '""'
 cmd print-text '${vo-passes}' # shouldn't crash
 
 ## Cleanup
