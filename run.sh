@@ -131,7 +131,13 @@ for ootf in display hlg 709-1886 gamma1.2; do
     cmd vf set format=light=$ootf
     save ootf-$ootf
 done
+cmd vf set format=gamma=hlg
+for mode in clip mobius reinhard hable gamma linear; do
+    cmd set hdr-tone-mapping $mode
+    save hdr-$mode
+done
 cmd vf clr '""'
+cmd set hdr-tone-mapping mobius
 cmd set target-trc auto
 cmd set target-prim auto
 cmd set video-zoom 0
