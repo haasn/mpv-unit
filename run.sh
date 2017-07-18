@@ -126,8 +126,14 @@ for trc in bt.1886 srgb linear pq hlg v-log s-log1 s-log2; do
     cmd set target-trc $trc
     save cms-$trc
 done
-cmd set target-prim auto
+cmd set target-trc srgb
+for ootf in display hlg 709-1886 gamma1.2; do
+    cmd vf set format=light=$ootf
+    save ootf-$ootf
+done
+cmd vf clr '""'
 cmd set target-trc auto
+cmd set target-prim auto
 cmd set video-zoom 0
 
 ## Test misc stuff
