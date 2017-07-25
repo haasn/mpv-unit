@@ -145,6 +145,13 @@ cmd set target-trc auto
 cmd set target-prim auto
 cmd set video-zoom 0
 
+# ICC profiles
+cmd set icc-profile src/aces.icc
+save icc-aces
+load src/whacked.png
+save icc-embedded
+cmd set icc-profile '""'
+
 ## Test misc stuff
 
 load src/circles.jpg
