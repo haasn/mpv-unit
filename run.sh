@@ -136,6 +136,9 @@ for mode in clip mobius reinhard hable gamma linear; do
     cmd set hdr-tone-mapping $mode
     save hdr-$mode
 done
+cmd set hdr-compute-peak yes
+save hdr-compute-peak
+cmd set hdr-compute-peak no
 cmd vf clr '""'
 cmd set hdr-tone-mapping mobius
 cmd set target-trc auto
@@ -152,7 +155,7 @@ save dither
 cmd set dither no
 
 cmd set linear-scaling yes
-for shader in gray tex offset; do
+for shader in gray tex offset compute; do
     cmd set opengl-shaders src/$shader.glsl
     save glsl_$shader
 done
