@@ -133,14 +133,14 @@ for ootf in display hlg 709-1886 gamma1.2; do
 done
 cmd vf set format=gamma=hlg
 for mode in clip mobius reinhard hable gamma linear; do
-    cmd set hdr-tone-mapping $mode
+    cmd set tone-mapping $mode
     save hdr-$mode
 done
 cmd set hdr-compute-peak yes
 save hdr-compute-peak
 cmd set hdr-compute-peak no
 cmd vf clr '""'
-cmd set hdr-tone-mapping mobius
+cmd set tone-mapping mobius
 cmd set target-trc auto
 cmd set target-prim auto
 cmd set video-zoom 0
